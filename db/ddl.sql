@@ -94,7 +94,7 @@ drop table if exists main.muser;
 create table if not exists main.muser (
     id int primary key,
     login varchar(50) not null,
-	password varchar(20) not null,
+	password varchar(50) not null,
 	name  varchar(50)
 	
 );
@@ -139,17 +139,29 @@ comment on column main.muser_mrole.id is 'PK';
 comment on column main.muser_mrole.muser_id is 'FK of user';
 comment on column main.muser_mrole.mrole_id is 'FK of role';
 
-create sequence if not exists main.movie_seq;
-create sequence if not exists main.actor_seq;
-create sequence if not exists main.genre_seq;
-create sequence if not exists main.image_seq;
-create sequence if not exists main.movie_actor_seq;
-create sequence if not exists main.movie_genre_seq;
+drop sequence if exists main.movie_seq;
+drop sequence if exists main.actor_seq;
+drop sequence if exists main.genre_seq;
+drop sequence if exists main.image_seq;
+drop sequence if exists main.movie_actor_seq;
+drop sequence if exists main.movie_genre_seq;
 
-create sequence if not exists main.muser_seq;
-create sequence if not exists main.mrole_seq;
-create sequence if not exists main.muser_movie_rating_seq;
-create sequence if not exists main.muser_mrole_seq;
+drop sequence if exists main.muser_seq;
+drop sequence if exists main.mrole_seq;
+drop sequence if exists main.muser_movie_rating_seq;
+drop sequence if exists main.muser_mrole_seq;
+
+create sequence if not exists main.movie_seq start 101;
+create sequence if not exists main.actor_seq start 101;
+create sequence if not exists main.genre_seq start 101;
+create sequence if not exists main.image_seq start 101;
+create sequence if not exists main.movie_actor_seq start 101;
+create sequence if not exists main.movie_genre_seq start 101;
+
+create sequence if not exists main.muser_seq start 101;
+create sequence if not exists main.mrole_seq start 101;
+create sequence if not exists main.muser_movie_rating_seq start 101;
+create sequence if not exists main.muser_mrole_seq start 101;
 
 
 alter table if exists main.image
