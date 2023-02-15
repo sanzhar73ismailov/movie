@@ -22,7 +22,7 @@ create table if not exists main.movie (
                                           title varchar(1024) not null,
                                           description text not null,
                                           film_director varchar(100) not null,
-                                          year int not null
+                                          release_year int not null
 );
 
 comment on table main.movie is 'List of movies';
@@ -30,7 +30,7 @@ comment on column main.movie.id is 'PK';
 comment on column main.movie.title is 'Title of movie';
 comment on column main.movie.description is 'Description of movie';
 comment on column main.movie.film_director is 'Film director of movie';
-comment on column main.movie.year is 'Release year';
+comment on column main.movie.release_year is 'Release year';
 
 drop table if exists main.actor;
 create table if not exists main.actor (
