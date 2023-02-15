@@ -4,12 +4,21 @@ These tasks consist of several aspects of programming that might be useful as an
 # Task Description and Requirements
 The goal of this task is to create a movie recommender system. The basic description of the system is provided below:
 
-The application is a catalog of movies of different genres. Each movie has a title, description, film director, list of actors, and image(s) from the main playbill. Each movie is categorized into one or more genres. Only the administrator can create, remove and update the list of movies. Users can rate the movies according to different criteria (e.g, how novel are the ideas of the movie, their final score, etc.). The main feature of the system is that users can pick one movie and get the list of similar movies and/or movies that were liked the most by other users watching the same movie (no need for complex algorithms, some simple recommendation is enough!).
+The application is a catalog of movies of different genres. 
+Each movie has a title, description, film director, list of actors, and image(s) from the main playbill. 
+Each movie is categorized into one or more genres. 
+Only the administrator can create, remove and update the list of movies. 
+Users can rate the movies according to different criteria (e.g, how novel are the ideas 
+of the movie, their final score, etc.). 
+The main feature of the system is that users can pick one movie and get the list of similar movies and/or 
+movies that were liked the most by other users watching the same movie (no need for complex algorithms, 
+some simple recommendation is enough!).
 
 **The project requirements**:
 
 *For backend*:
-- Design and implement a database (provide figure of ERD, DDL and DML scripts of that -- consider creating a database role for an application accessing that database, insert suitable amount of data).
+- Design and implement a database (provide figure of ERD, DDL and DML scripts of that -- consider creating 
+  a database role for an application accessing that database, insert suitable amount of data).
 - Design and implement a backend service (on top of the database).
   - The backend should be separate for data layer, service layer, and rest layer (if needed add more layers).
   - If possible document REST API appropriately (e.g., using Swagger).
@@ -31,4 +40,3 @@ The application is a catalog of movies of different genres. Each movie has a tit
 **The project delivery**:
 
 Submit the URL to the Git repository where your solution is placed.
-
