@@ -83,5 +83,51 @@ public class TestRepoController {
         return stb.toString();
     }
 
+    @GetMapping(path = "/readMovie")
+    public String testReadMovie() {
+        StringBuilder stb = new StringBuilder();
+        System.out.println("repository.getClass() = " + movieRepository.getClass());
+        Object object = movieRepository.findById(1).orElseThrow();
+        stb.append("read: " + object).append("\n");
+        stb.append("readAll: " + movieRepository.findAll()).append("\n\n");
+        System.out.println("object = " + object);
+        return stb.toString();
+    }
 
+    @GetMapping(path = "/readImage")
+    public String testReadImage() {
+        StringBuilder stb = new StringBuilder();
+        System.out.println("repository.getClass() = " + imageRepository.getClass());
+        Image object = imageRepository.findById(101).orElseThrow();
+        stb.append("read: " + object).append("\n");
+//        stb.append("readAll: " + imageRepository.findAll()).append("\n\n");
+        if(object.getMovie() != null) {
+            System.out.println("object = " + object.getMovie().getId());
+            System.out.println("object = " + object.getMovie().getTitle());
+            System.out.println("object = " + object.getMovie());
+        }
+
+
+        return stb.toString();
+    }
+
+    @GetMapping(path = "/readMovieAndActors")
+    public String testReadMovieAndActors() {
+        StringBuilder stb = new StringBuilder();
+        System.out.println("repository.getClass() = " + movieRepository.getClass());
+        Movie movie = movieRepository.findById(1).orElseThrow();
+        stb.append("read: " + movie).append("\n");
+//        stb.append("readAll: " + imageRepository.findAll()).append("\n\n");
+        if(movie.getGenres() != null) {
+            System.out.println("object.getGenres() = " + movie.getGenres());
+        }
+
+        Actor actor = actorRepository.findById(1).orElseThrow();
+        System.out.println("actor = " + actor);
+
+        Genre genre = genreRepository.findById(1).orElseThrow();
+        System.out.println("genre=" + genre);
+
+        return stb.toString();
+    }
 }
