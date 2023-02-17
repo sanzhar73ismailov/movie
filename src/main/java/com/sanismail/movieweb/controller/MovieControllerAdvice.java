@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.sanismail.movieweb.service.EntityNotFoundException;
-import com.sanismail.movieweb.service.IdHasNullValueException;
+import com.sanismail.movieweb.service.exception.EntityNotFoundException;
+import com.sanismail.movieweb.service.exception.IdHasNullValueException;
 
 @ControllerAdvice
 public class MovieControllerAdvice {

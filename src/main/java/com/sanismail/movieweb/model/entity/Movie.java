@@ -5,6 +5,8 @@ import java.util.Set;
 
 import org.hibernate.Hibernate;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,7 +25,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Entity
 @Table(schema = "main", name = "movie")
@@ -87,8 +88,6 @@ public class Movie {
         sb.append(", description='").append(description).append('\'');
         sb.append(", filmDirector='").append(filmDirector).append('\'');
         sb.append(", releaseYear=").append(releaseYear);
-        //sb.append(", images=").append(images);
-        //sb.append(", actors=").append(actors);
         sb.append('}');
         return sb.toString();
     }

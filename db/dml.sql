@@ -1,16 +1,14 @@
 delete from main.movie_actor;
 delete from main.movie_genre;
+delete from main.muser_movie_rating;
+delete from main.muser_mrole;
+delete from main.mrole_privilege;
 delete from main.actor;
 delete from main.movie;
 delete from main.genre;
 delete from main.muser;
 delete from main.mrole;
-delete from main.muser_movie_rating;
-delete from main.muser_mrole;
-
-
-
-
+delete from main.privilege;
 
 
 INSERT INTO main.actor(id, name, date_birth, sex) VALUES (1, 'Robert De Niro', '1943-08-17', 'male');
@@ -39,34 +37,33 @@ INSERT INTO main.genre(id, name) VALUES (12,'Fantasy');
 INSERT INTO main.genre(id, name) VALUES (13,'Thriller');
 INSERT INTO main.genre(id, name) VALUES (14,'Detective');
 
-insert into main.movie_actor (id, movie_id, actor_id) values(1,1,1);
-insert into main.movie_actor (id, movie_id, actor_id) values(2,1,2);
-insert into main.movie_actor (id, movie_id, actor_id) values(3,1,3);
-insert into main.movie_actor (id, movie_id, actor_id) values(4,1,4);
-insert into main.movie_actor (id, movie_id, actor_id) values(5,1,5);
-insert into main.movie_actor (id, movie_id, actor_id) values(6,2,2);
-insert into main.movie_actor (id, movie_id, actor_id) values(7,2,6);
-insert into main.movie_actor (id, movie_id, actor_id) values(8,2,7);
+insert into main.movie_actor (movie_id, actor_id) values(1,1);
+insert into main.movie_actor (movie_id, actor_id) values(1,2);
+insert into main.movie_actor (movie_id, actor_id) values(1,3);
+insert into main.movie_actor (movie_id, actor_id) values(1,4);
+insert into main.movie_actor (movie_id, actor_id) values(1,5);
+insert into main.movie_actor (movie_id, actor_id) values(2,2);
+insert into main.movie_actor (movie_id, actor_id) values(2,6);
+insert into main.movie_actor (movie_id, actor_id) values(2,7);
 
-insert into main.movie_genre (id, movie_id, genre_id) values(1,1,7);
-insert into main.movie_genre (id, movie_id, genre_id) values(2,1,9);
-insert into main.movie_genre (id, movie_id, genre_id) values(3,2,9);
-insert into main.movie_genre (id, movie_id, genre_id) values(4,2,12);
-insert into main.movie_genre (id, movie_id, genre_id) values(5,2,13);
-insert into main.movie_genre (id, movie_id, genre_id) values(6,2,14);
+insert into main.movie_genre (movie_id, genre_id) values(1,7);
+insert into main.movie_genre (movie_id, genre_id) values(1,9);
+insert into main.movie_genre (movie_id, genre_id) values(2,9);
+insert into main.movie_genre (movie_id, genre_id) values(2,12);
+insert into main.movie_genre (movie_id, genre_id) values(2,13);
+insert into main.movie_genre (movie_id, genre_id) values(2,14);
 
-INSERT INTO main.muser(id, login, password, name)	VALUES (1, 'petr1', 'pass111', 'Petr Nowak');
-INSERT INTO main.muser(id, login, password, name)	VALUES (2, 'iwona1', 'pass222', 'Iwona Kowalska');
-	
-INSERT INTO main.mrole(id, name) VALUES (1, 'admin');
-INSERT INTO main.mrole(id, name) VALUES (2, 'user');
-INSERT INTO main.mrole(id, name) VALUES (3, 'guest');
-	
 INSERT INTO main.muser_movie_rating(id, muser_id, movie_id, rating)	VALUES (1, 1, 1, 9);
 INSERT INTO main.muser_movie_rating(id, muser_id, movie_id, rating)	VALUES (2, 1, 2, 5);
 INSERT INTO main.muser_movie_rating(id, muser_id, movie_id, rating)	VALUES (3, 2, 1, 3);
 INSERT INTO main.muser_movie_rating(id, muser_id, movie_id, rating)	VALUES (4, 2, 2, 8);
 
-INSERT INTO main.muser_mrole(id, muser_id, mrole_id) VALUES (1, 1, 1);
-INSERT INTO main.muser_mrole(id, muser_id, mrole_id) VALUES (2, 2, 2);
-
+INSERT INTO main.muser(id, email, password, name)	VALUES (1, 'petr@gmail.com', 'pass111', 'Petr Nowak');
+INSERT INTO main.muser(id, email, password, name)	VALUES (2, 'iwona@gmail.com', 'pass222', 'Iwona Kowalska');
+/*
+INSERT INTO main.mrole(id, name) VALUES (1, 'admin');
+INSERT INTO main.mrole(id, name) VALUES (2, 'user');
+INSERT INTO main.mrole(id, name) VALUES (3, 'guest');
+INSERT INTO main.muser_mrole(muser_id, mrole_id) VALUES (1, 1);
+INSERT INTO main.muser_mrole(muser_id, mrole_id) VALUES (2, 2);
+*/

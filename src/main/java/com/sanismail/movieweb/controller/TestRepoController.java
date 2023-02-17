@@ -27,6 +27,8 @@ public class TestRepoController {
     RoleRepository roleRepository;
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    PrivilegeRepository privilegeRepository;
 
 
     @GetMapping(path = "/read")
@@ -75,7 +77,7 @@ public class TestRepoController {
                         .build()));
         stb.append("\nuser created: ")
                 .append(userRepository.save(User.builder()
-                        .login("login " + new Date())
+                        .email("email1@ " + new Date())
                         .password("password " + new Date())
                         .name("name " + new Date())
                         .build()));
@@ -114,19 +116,26 @@ public class TestRepoController {
     @GetMapping(path = "/readMovieAndActors")
     public String testReadMovieAndActors() {
         StringBuilder stb = new StringBuilder();
-        System.out.println("repository.getClass() = " + movieRepository.getClass());
-        Movie movie = movieRepository.findById(1).orElseThrow();
-        stb.append("read: " + movie).append("\n");
-//        stb.append("readAll: " + imageRepository.findAll()).append("\n\n");
-        if(movie.getGenres() != null) {
-            System.out.println("object.getGenres() = " + movie.getGenres());
-        }
+//        System.out.println(33333);
+//        System.out.println("111repository.getClass() = " + movieRepository.getClass());
+//        Movie movie = movieRepository.findById(1).orElseThrow();
+//        stb.append("read: " + movie).append("\n");
+////        stb.append("readAll: " + imageRepository.findAll()).append("\n\n");
+//        if(movie.getGenres() != null) {
+//            System.out.println("object.getGenres() = " + movie.getGenres());
+//        }
+//
+//        Actor actor = actorRepository.findById(1).orElseThrow();
+//        System.out.println("actor = " + actor);
+//
+//        Genre genre = genreRepository.findById(1).orElseThrow();
+//        System.out.println("genre=" + genre);
 
-        Actor actor = actorRepository.findById(1).orElseThrow();
-        System.out.println("actor = " + actor);
+        Privilege privilege = privilegeRepository.findById(1).orElseThrow();
+        System.out.println("privilege=" + privilege);
 
-        Genre genre = genreRepository.findById(1).orElseThrow();
-        System.out.println("genre=" + genre);
+        Role role = roleRepository.findById(1).orElseThrow();
+        System.out.println("role = " + role);
 
         return stb.toString();
     }

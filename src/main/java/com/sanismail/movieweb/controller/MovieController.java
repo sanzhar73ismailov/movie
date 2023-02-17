@@ -16,53 +16,55 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sanismail.movieweb.config.MapperUtil;
-import com.sanismail.movieweb.dto.ActorDto;
-import com.sanismail.movieweb.model.entity.Actor;
-import com.sanismail.movieweb.service.ActorService;
+import com.sanismail.movieweb.dto.GenreDto;
+import com.sanismail.movieweb.dto.MovieDto;
+import com.sanismail.movieweb.model.entity.Genre;
+import com.sanismail.movieweb.model.entity.Movie;
+import com.sanismail.movieweb.service.MovieService;
 
-@RequestMapping("/actor")
-@RestController
-public class ActorController {
+@RequestMapping("/movie")
+@RestController()
+public class MovieController {
     @Autowired
-    ActorService service;
+    MovieService service;
     @Autowired
     private ModelMapper modelMapper;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(path = "/")
-    public ActorDto create(@RequestBody ActorDto object) {
+    public MovieDto create(@RequestBody MovieDto object) {
         return convertToDto(service.save(convertToEntity(object)));
     }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(path = "/{id}")
-    public ActorDto read(@PathVariable("id") Integer id) {
+    public MovieDto read(@PathVariable("id") Integer id) {
         return convertToDto(service.getById(id));
     }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/all")
-    public List<ActorDto> readAll() {
+    public List<MovieDto> readAll() {
         return MapperUtil.convertList(service.getAll(), this::convertToDto);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping(path = "/")
-    public ActorDto update(@RequestBody ActorDto object) {
+    public MovieDto update(@RequestBody MovieDto object) {
         return convertToDto(service.update(convertToEntity(object)));
     }
 
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping(path = "/")
-    public void delete(@RequestBody ActorDto object) {
+    public void delete(@RequestBody MovieDto object) {
         service.remove(convertToEntity(object));
     }
 
-    private ActorDto convertToDto(Actor entity) {
-        return modelMapper.map(entity, ActorDto.class);
+    private MovieDto convertToDto(Movie entity) {
+        return modelMapper.map(entity, MovieDto.class);
     }
 
-    private Actor convertToEntity(ActorDto dto) {
-        return modelMapper.map(dto, Actor.class);
+    private Movie convertToEntity(MovieDto dto) {
+        return modelMapper.map(dto, Movie.class);
     }
 }

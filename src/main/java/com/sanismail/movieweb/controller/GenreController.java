@@ -17,52 +17,54 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sanismail.movieweb.config.MapperUtil;
 import com.sanismail.movieweb.dto.ActorDto;
+import com.sanismail.movieweb.dto.GenreDto;
 import com.sanismail.movieweb.model.entity.Actor;
-import com.sanismail.movieweb.service.ActorService;
+import com.sanismail.movieweb.model.entity.Genre;
+import com.sanismail.movieweb.service.GenreService;
 
-@RequestMapping("/actor")
+@RequestMapping("/genre")
 @RestController
-public class ActorController {
+public class GenreController {
     @Autowired
-    ActorService service;
+    GenreService service;
     @Autowired
     private ModelMapper modelMapper;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(path = "/")
-    public ActorDto create(@RequestBody ActorDto object) {
+    public GenreDto create(@RequestBody GenreDto object) {
         return convertToDto(service.save(convertToEntity(object)));
     }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(path = "/{id}")
-    public ActorDto read(@PathVariable("id") Integer id) {
+    public GenreDto read(@PathVariable("id") Integer id) {
         return convertToDto(service.getById(id));
     }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/all")
-    public List<ActorDto> readAll() {
+    public List<GenreDto> readAll() {
         return MapperUtil.convertList(service.getAll(), this::convertToDto);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping(path = "/")
-    public ActorDto update(@RequestBody ActorDto object) {
+    public GenreDto update(@RequestBody GenreDto object) {
         return convertToDto(service.update(convertToEntity(object)));
     }
 
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping(path = "/")
-    public void delete(@RequestBody ActorDto object) {
+    public void delete(@RequestBody GenreDto object) {
         service.remove(convertToEntity(object));
     }
 
-    private ActorDto convertToDto(Actor entity) {
-        return modelMapper.map(entity, ActorDto.class);
+    private GenreDto convertToDto(Genre entity) {
+        return modelMapper.map(entity, GenreDto.class);
     }
 
-    private Actor convertToEntity(ActorDto dto) {
-        return modelMapper.map(dto, Actor.class);
+    private Genre convertToEntity(GenreDto dto) {
+        return modelMapper.map(dto, Genre.class);
     }
 }

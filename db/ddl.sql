@@ -1,19 +1,3 @@
-/*
-# Programming Tasks
-
-These tasks consist of several aspects of programming that might be useful as an entry level for an interview.
-
-# Task Description and Requirements
-The goal of this task is to create a movie recommender system. The basic description of the system is provided below:
-
-The application is a catalog of movies of different genres. Each movie has a title, description, film director, list of actors, and image(s) from the main playbill.
-    Each movie is categorized into one or more genres.
-    Only the administrator can create, remove and update the list of movies.
-        Users can rate the movies according to different criteria (e.g, how novel are the ideas of the movie, their final score, etc.).
-        The main feature of the system is that users can pick one movie and get the list of similar movies and/or movies that were liked
-        the most by other users watching the same movie (no need for complex algorithms, some simple recommendation is enough!).
-*/
-
 CREATE SCHEMA IF NOT EXISTS main;
 
 drop table if exists main.movie;
@@ -69,23 +53,21 @@ comment on column main.image.movie_id is 'FK of movie';
 
 drop table if exists main.movie_actor;
 create table if not exists main.movie_actor(
-	id int primary key,
 	movie_id int not null,
-	actor_id int not null
+	actor_id int not null,
+	CONSTRAINT movie_actor_unique UNIQUE (movie_id, actor_id)
 );
 comment on table main.movie_actor is 'Movies and actors';
-comment on column main.movie_actor.id is 'PK';
 comment on column main.movie_actor.movie_id is 'FK of movie';
 comment on column main.movie_actor.actor_id is 'FK of actor';
 
 drop table if exists main.movie_genre;
 create table if not exists main.movie_genre(
-	id int primary key,
 	movie_id int not null,
-	genre_id int not null
+	genre_id int not null,
+	CONSTRAINT movie_genre_unique UNIQUE (movie_id, genre_id)
 );
 comment on table main.movie_genre is 'Movies and genres';
-comment on column main.movie_genre.id is 'PK';
 comment on column main.movie_genre.movie_id is 'FK of movie';
 comment on column main.movie_genre.genre_id is 'FK of genre';
 
@@ -93,14 +75,14 @@ comment on column main.movie_genre.genre_id is 'FK of genre';
 drop table if exists main.muser;
 create table if not exists main.muser (
     id int primary key,
-    login varchar(50) not null,
-	password varchar(50) not null,
+    email varchar(50) not null unique,
+	password varchar(200) not null,
 	name  varchar(50)
 	
 );
 comment on table main.muser is 'List of users';
 comment on column main.muser.id is 'PK';
-comment on column main.muser.login is 'Login of user';
+comment on column main.muser.email is 'Email (login) of user';
 comment on column main.muser.password is 'Password';
 comment on column main.muser.name is 'User name';
 
@@ -109,7 +91,8 @@ create table if not exists main.muser_movie_rating (
     id int primary key,
     muser_id int not null,
 	movie_id int not null,
-	rating int not null
+	rating int not null,
+	CONSTRAINT muser_movie_rating_unique UNIQUE (muser_id, movie_id)
 	
 );
 comment on table main.muser_movie_rating is 'Movie rating from user';
@@ -130,14 +113,32 @@ comment on column main.mrole.name is 'Role name';
 
 drop table if exists main.muser_mrole;
 create table if not exists main.muser_mrole(
-   id int primary key,
    muser_id int not null,
-   mrole_id int not null
+   mrole_id int not null,
+  CONSTRAINT muser_mrole_unique UNIQUE (muser_id, mrole_id)
 );
 comment on table main.muser_mrole is 'Users and roles';
-comment on column main.muser_mrole.id is 'PK';
 comment on column main.muser_mrole.muser_id is 'FK of user';
 comment on column main.muser_mrole.mrole_id is 'FK of role';
+
+drop table if exists main.privilege;
+create table if not exists main.privilege (
+                                          id int primary key,
+                                          name varchar(100) not null
+);
+comment on table main.privilege is 'List of privileges';
+comment on column main.privilege.id is 'PK';
+comment on column main.privilege.name is 'Privilege name';
+
+drop table if exists main.mrole_privilege;
+create table if not exists main.mrole_privilege(
+   mrole_id int not null,
+   privilege_id int not null,
+  CONSTRAINT mrole_privilege_unique UNIQUE (mrole_id, privilege_id)
+);
+comment on table main.mrole_privilege is 'Roles and privileges';
+comment on column main.mrole_privilege.mrole_id is 'FK of role';
+comment on column main.mrole_privilege.privilege_id is 'FK of privilege';
 
 drop sequence if exists main.movie_seq;
 drop sequence if exists main.actor_seq;
@@ -150,19 +151,19 @@ drop sequence if exists main.muser_seq;
 drop sequence if exists main.mrole_seq;
 drop sequence if exists main.muser_movie_rating_seq;
 drop sequence if exists main.muser_mrole_seq;
+drop sequence if exists main.privilege_seq;
+drop sequence if exists main.mrole_privilege_seq;
 
 create sequence if not exists main.movie_seq start 101;
 create sequence if not exists main.actor_seq start 101;
 create sequence if not exists main.genre_seq start 101;
 create sequence if not exists main.image_seq start 101;
-create sequence if not exists main.movie_actor_seq start 101;
-create sequence if not exists main.movie_genre_seq start 101;
 
 create sequence if not exists main.muser_seq start 101;
 create sequence if not exists main.mrole_seq start 101;
 create sequence if not exists main.muser_movie_rating_seq start 101;
-create sequence if not exists main.muser_mrole_seq start 101;
-
+create sequence if not exists main.privilege_seq start 101;
+/*
 
 alter table if exists main.image
     add foreign key (movie_id)
@@ -198,3 +199,12 @@ alter table if exists main.muser_mrole
 alter table if exists main.muser_mrole
     add foreign key (mrole_id)
     references main.mrole (id);
+
+alter table if exists main.mrole_privilege
+    add foreign key (mrole_id)
+    references main.mrole (id);
+	
+alter table if exists main.mrole_privilege
+    add foreign key (privilege_id)
+    references main.privelege (id);
+	*/

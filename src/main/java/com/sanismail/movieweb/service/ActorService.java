@@ -5,23 +5,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.sanismail.movieweb.model.entity.Actor;
 import com.sanismail.movieweb.repository.ActorRepository;
+import com.sanismail.movieweb.service.exception.EntityNotFoundException;
+import com.sanismail.movieweb.service.exception.IdHasNullValueException;
 
 @Service
 public class ActorService {
     @Autowired
-    ActorRepository actorRepository;
+    ActorRepository repository;
 
     public Actor save(Actor actor) {
-        return actorRepository.save(actor);
+        return repository.save(actor);
     }
 
     public Actor getById(Integer id) {
-        return actorRepository.findById(id)
+        return repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException(id, Actor.class));
     }
 
     public List<Actor> getAll() {
-        return (List<Actor>) actorRepository.findAll();
+        return (List<Actor>) repository.findAll();
     }
 
     public Actor update(Actor actor) {
@@ -32,12 +34,12 @@ public class ActorService {
 
     public void remove(Actor actor) {
         validate(actor);
-        actorRepository.deleteById(actor.getId());
+        repository.deleteById(actor.getId());
     }
 
     private void validate(Actor actor) {
         checkIdIsNotNull(actor);
-        if (!actorRepository.existsById(actor.getId())) {
+        if (!repository.existsById(actor.getId())) {
             throw new EntityNotFoundException(actor.getId(), Actor.class);
         }
     }
