@@ -2,6 +2,7 @@ package com.sanismail.movieweb.controller;
 
 import java.util.List;
 
+import org.hibernate.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,13 @@ import com.sanismail.movieweb.config.MapperUtil;
 import com.sanismail.movieweb.dto.MovieDto;
 import com.sanismail.movieweb.model.entity.Movie;
 import com.sanismail.movieweb.service.MovieService;
+import com.sanismail.movieweb.service.exception.MoviesNotFoundException;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 /**
  * The main feature of the system is that users can pick one movie and get the list of similar movies and/or
@@ -31,14 +39,28 @@ public class RecommenderController {
     private ModelMapper modelMapper;
 
     /**
-     *
      * @param movieId - movie id number
      * @return Last 3 movies (by release year) of the same genres
      */
+
+    @Operation(summary = "Get the list of similar movies")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Found the movies",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = MovieDto.class))}),
+            @ApiResponse(responseCode = "400", description = "Invalid id supplied",
+                    content = @Content),
+            @ApiResponse(responseCode = "404", description = "Movies not found",
+                    content = @Content)})
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(path = "/{movieId}")
     public List<MovieDto> getRecommended(@PathVariable("movieId") Integer movieId) {
-       return MapperUtil.convertList(movieService.getRecommended(movieId, 3), this::convertToDto);
+        Movie movie = movieService.getById(movieId);
+        List<MovieDto> movies = MapperUtil.convertList(movieService.getRecommended(movieId, 3), this::convertToDto);
+        if (movies.isEmpty()) {
+            throw new MoviesNotFoundException(movie.getTitle());
+        }
+        return movies;
     }
 
     private MovieDto convertToDto(Movie entity) {

@@ -44,6 +44,8 @@ INSERT INTO main.movie(id, title, description, film_director, release_year)
    VALUES (10,'Thriller 2','','FIlm dir Thriller 2','2002');
 INSERT INTO main.movie(id, title, description, film_director, release_year) 
    VALUES (11,'Thriller 3','','FIlm dir Thriller 3','2003');
+INSERT INTO main.movie(id, title, description, film_director, release_year) 
+   VALUES (12,'Musicals (Dance) 1','','Musicals (Dance) 1','1977');
 
 
 INSERT INTO main.genre(id, name) VALUES (1,'Action');
@@ -85,7 +87,7 @@ insert into main.movie_genre (movie_id, genre_id) values(8,12);
 insert into main.movie_genre (movie_id, genre_id) values(9,13);
 insert into main.movie_genre (movie_id, genre_id) values(10,13);
 insert into main.movie_genre (movie_id, genre_id) values(11,13);
-
+insert into main.movie_genre (movie_id, genre_id) values(11,4);
 
 INSERT INTO main.muser_movie_rating(id, muser_id, movie_id, rating)	VALUES (1, 1, 1, 9);
 INSERT INTO main.muser_movie_rating(id, muser_id, movie_id, rating)	VALUES (2, 1, 2, 5);

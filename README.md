@@ -1,14 +1,30 @@
-When we run our application, the OpenAPI descriptions will be available at the path /v3/api-docs by default:
-http://localhost:8080/v3/api-docs/
 
-access the API documentation at:
-http://localhost:8080/swagger-ui.html
 
 # Programming Tasks
 These tasks consist of several aspects of programming that might be useful as an entry level for an interview.
 
 # Task Description and Requirements
 The goal of this task is to create a movie recommender system. The basic description of the system is provided below:
+
+ 1. figure of ERD (pgAdmin), DDL and DML scripts of that - folder rootOfProject/db
+    DDL - see db/ddl.sql
+    DML - see db/dml.sql  
+    ERD - see pgAdmin project - db/erd_project.pgerd file
+         or jpg files: erd_figure.jpg, erd_figure_user_roles_ratings.jpg
+    used postgres db
+
+ 2. If possible document REST API appropriately (e.g., using Swagger).
+    # When we run our application, the OpenAPI descriptions will be available at the path:
+    http://localhost:8080/v3/api-docs
+    # access the API documentation at:
+    http://localhost:8080/swagger-ui/4.15.5/index.html
+    # example of REST API document  using Swagger see RecommenderController class
+ 3. If possible integrate a suitable security of the created API (e.g., using Single-sign on).
+    No time to implement it (I recommend to use https://www.baeldung.com/sso-spring-security-oauth2 example for that)
+  - Discuss, how the video files can be effectively stored.
+
+
+
 
 The application is a catalog of movies of different genres. 
 Each movie has a title, description, film director, list of actors, and image(s) from the main playbill. 
