@@ -1,3 +1,9 @@
+When we run our application, the OpenAPI descriptions will be available at the path /v3/api-docs by default:
+http://localhost:8080/v3/api-docs/
+
+access the API documentation at:
+http://localhost:8080/swagger-ui.html
+
 # Programming Tasks
 These tasks consist of several aspects of programming that might be useful as an entry level for an interview.
 

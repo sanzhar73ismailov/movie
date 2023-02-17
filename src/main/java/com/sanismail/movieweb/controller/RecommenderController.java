@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sanismail.movieweb.config.MapperUtil;
-import com.sanismail.movieweb.dto.ActorDto;
 import com.sanismail.movieweb.dto.MovieDto;
 import com.sanismail.movieweb.model.entity.Movie;
 import com.sanismail.movieweb.service.MovieService;
