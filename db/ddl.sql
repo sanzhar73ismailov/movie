@@ -163,6 +163,11 @@ create sequence if not exists main.muser_seq start 101;
 create sequence if not exists main.mrole_seq start 101;
 create sequence if not exists main.muser_movie_rating_seq start 101;
 create sequence if not exists main.privilege_seq start 101;
+
+
+
+
+
 /*
 
 alter table if exists main.image

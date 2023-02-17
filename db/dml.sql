@@ -19,8 +19,32 @@ INSERT INTO main.actor(id, name, date_birth, sex) VALUES (5, 'Diane Keaton', '19
 INSERT INTO main.actor(id, name, date_birth, sex) VALUES (6, 'Charlize Theron', '1975-08-07', 'female');
 INSERT INTO main.actor(id, name, date_birth, sex) VALUES (7, 'Keanu Charles Reeves', '1964-09-02', 'male');
 
-INSERT INTO main.movie(id, title, description, film_director, release_year) VALUES (1,'God Father','','Francis Ford Coppola','1972');
-INSERT INTO main.movie(id, title, description, film_director, release_year) VALUES (2,'Devil''s Advocate','','Taylor Hackford','1997');
+INSERT INTO main.movie(id, title, description, film_director, release_year) 
+VALUES (1,'God Father','','Francis Ford Coppola','1972');
+INSERT INTO main.movie(id, title, description, film_director, release_year) 
+VALUES (2,'Devil''s Advocate','','Taylor Hackford','1997');
+
+INSERT INTO main.movie(id, title, description, film_director, release_year) 
+   VALUES (3,'Detective 1','','FIlm dir Detective 1','1991');
+INSERT INTO main.movie(id, title, description, film_director, release_year) 
+   VALUES (4,'Detective 2','','FIlm dir Detective 2','1992');
+INSERT INTO main.movie(id, title, description, film_director, release_year) 
+   VALUES (5,'Detective 3','','FIlm dir Detective 3','1993');
+
+INSERT INTO main.movie(id, title, description, film_director, release_year) 
+   VALUES (6,'Fantasy 1','','FIlm dir Fantasy 1','1981');
+INSERT INTO main.movie(id, title, description, film_director, release_year) 
+   VALUES (7,'Fantasy 2','','FIlm dir Fantasy 2','1982');
+INSERT INTO main.movie(id, title, description, film_director, release_year) 
+   VALUES (8,'Fantasy 3','','FIlm dir Fantasy 3','1983');
+
+INSERT INTO main.movie(id, title, description, film_director, release_year) 
+   VALUES (9,'Thriller 1','','FIlm dir Thriller 1','2001');
+INSERT INTO main.movie(id, title, description, film_director, release_year) 
+   VALUES (10,'Thriller 2','','FIlm dir Thriller 2','2002');
+INSERT INTO main.movie(id, title, description, film_director, release_year) 
+   VALUES (11,'Thriller 3','','FIlm dir Thriller 3','2003');
+
 
 INSERT INTO main.genre(id, name) VALUES (1,'Action');
 INSERT INTO main.genre(id, name) VALUES (2,'Horror');
@@ -52,6 +76,16 @@ insert into main.movie_genre (movie_id, genre_id) values(2,9);
 insert into main.movie_genre (movie_id, genre_id) values(2,12);
 insert into main.movie_genre (movie_id, genre_id) values(2,13);
 insert into main.movie_genre (movie_id, genre_id) values(2,14);
+insert into main.movie_genre (movie_id, genre_id) values(3,14);
+insert into main.movie_genre (movie_id, genre_id) values(4,14);
+insert into main.movie_genre (movie_id, genre_id) values(5,14);
+insert into main.movie_genre (movie_id, genre_id) values(6,12);
+insert into main.movie_genre (movie_id, genre_id) values(7,12);
+insert into main.movie_genre (movie_id, genre_id) values(8,12);
+insert into main.movie_genre (movie_id, genre_id) values(9,13);
+insert into main.movie_genre (movie_id, genre_id) values(10,13);
+insert into main.movie_genre (movie_id, genre_id) values(11,13);
+
 
 INSERT INTO main.muser_movie_rating(id, muser_id, movie_id, rating)	VALUES (1, 1, 1, 9);
 INSERT INTO main.muser_movie_rating(id, muser_id, movie_id, rating)	VALUES (2, 1, 2, 5);

@@ -16,6 +16,10 @@ public class MovieService {
     @Autowired
     MovieRepository repository;
 
+    public List<Movie> getRecommended(Integer movieId, int limit) {
+        return repository.findMoviesByMovieExampleId(movieId, limit);
+    }
+
     public Movie save(Movie entity) {
         return repository.save(entity);
     }

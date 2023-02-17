@@ -23,7 +23,7 @@ import com.sanismail.movieweb.model.entity.Movie;
 import com.sanismail.movieweb.service.MovieService;
 
 @RequestMapping("/movie")
-@RestController()
+@RestController
 public class MovieController {
     @Autowired
     MovieService service;
