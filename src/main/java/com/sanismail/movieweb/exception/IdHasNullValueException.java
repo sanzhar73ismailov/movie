@@ -1,4 +1,4 @@
-package com.sanismail.movieweb.service.exception;
+package com.sanismail.movieweb.exception;
 
 import static java.lang.String.format;
 

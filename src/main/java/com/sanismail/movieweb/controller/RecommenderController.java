@@ -2,7 +2,6 @@ package com.sanismail.movieweb.controller;
 
 import java.util.List;
 
-import org.hibernate.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,7 +15,7 @@ import com.sanismail.movieweb.config.MapperUtil;
 import com.sanismail.movieweb.dto.MovieDto;
 import com.sanismail.movieweb.model.entity.Movie;
 import com.sanismail.movieweb.service.MovieService;
-import com.sanismail.movieweb.service.exception.MoviesNotFoundException;
+import com.sanismail.movieweb.exception.MoviesNotFoundException;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;

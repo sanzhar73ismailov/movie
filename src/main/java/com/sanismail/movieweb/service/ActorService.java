@@ -5,8 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.sanismail.movieweb.model.entity.Actor;
 import com.sanismail.movieweb.repository.ActorRepository;
-import com.sanismail.movieweb.service.exception.EntityNotFoundException;
-import com.sanismail.movieweb.service.exception.IdHasNullValueException;
+import com.sanismail.movieweb.exception.EntityNotFoundException;
+import com.sanismail.movieweb.exception.IdHasNullValueException;
 
 @Service
 public class ActorService {

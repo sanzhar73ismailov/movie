@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 import com.sanismail.movieweb.model.entity.Actor;
 import com.sanismail.movieweb.model.entity.Genre;
 import com.sanismail.movieweb.repository.GenreRepository;
-import com.sanismail.movieweb.service.exception.EntityNotFoundException;
-import com.sanismail.movieweb.service.exception.IdHasNullValueException;
+import com.sanismail.movieweb.exception.EntityNotFoundException;
+import com.sanismail.movieweb.exception.IdHasNullValueException;
 
 @Service
 public class GenreService {

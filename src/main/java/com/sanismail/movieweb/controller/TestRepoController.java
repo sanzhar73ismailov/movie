@@ -6,14 +6,19 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sanismail.movieweb.model.entity.*;
 import com.sanismail.movieweb.repository.*;
+import com.sanismail.movieweb.exception.EntityNotFoundException;
+import com.sanismail.movieweb.exception.IdHasNullValueException;
+import com.sanismail.movieweb.exception.MovieAuthException;
+import com.sanismail.movieweb.exception.MoviesNotFoundException;
 
 @RequestMapping("/testrepo")
-@RestController()
+@RestController
 public class TestRepoController {
     @Autowired
     ActorRepository actorRepository;
@@ -30,6 +35,27 @@ public class TestRepoController {
     @Autowired
     PrivilegeRepository privilegeRepository;
 
+    @GetMapping(path = "/exception/{exceptionName}")
+    public String testExceptions(@PathVariable("exceptionName") String exceptionName) {
+        switch (exceptionName) {
+            case "EntityNotFoundException":
+                System.out.println(exceptionName);
+                throw new EntityNotFoundException(0, Object.class);
+            case "MoviesNotFoundException":
+                System.out.println(exceptionName);
+                throw new MoviesNotFoundException("Forrest Gump");
+            case "IdHasNullValueException":
+                System.out.println(exceptionName);
+                throw new IdHasNullValueException(Object.class);
+            case "MovieAuthException":
+                System.out.println(exceptionName);
+                throw new MovieAuthException("hello");
+            case "Exception":
+                System.out.println(exceptionName);
+                throw new RuntimeException("hello");
+        }
+        return "default message";
+    }
 
     @GetMapping(path = "/read")
     public String test() {
@@ -103,7 +129,7 @@ public class TestRepoController {
         Image object = imageRepository.findById(101).orElseThrow();
         stb.append("read: " + object).append("\n");
 //        stb.append("readAll: " + imageRepository.findAll()).append("\n\n");
-        if(object.getMovie() != null) {
+        if (object.getMovie() != null) {
             System.out.println("object = " + object.getMovie().getId());
             System.out.println("object = " + object.getMovie().getTitle());
             System.out.println("object = " + object.getMovie());

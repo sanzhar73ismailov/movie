@@ -2,6 +2,7 @@ package com.sanismail.movieweb.model.entity;
 
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Set;
 
@@ -40,7 +41,7 @@ public class Actor {
     @Column(name = "name", nullable = false)
     private String name;
     @Column(name = "date_birth")
-    private Date dateBirth;
+    private LocalDate dateBirth;
     @Column(name = "sex", nullable = false)
     private String sex;
 

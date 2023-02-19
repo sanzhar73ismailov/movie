@@ -10,7 +10,7 @@ import com.sanismail.movieweb.dto.UserDto;
 import com.sanismail.movieweb.model.entity.User;
 import com.sanismail.movieweb.repository.RoleRepository;
 import com.sanismail.movieweb.repository.UserRepository;
-import com.sanismail.movieweb.service.exception.UserAlreadyExistException;
+import com.sanismail.movieweb.exception.UserAlreadyExistException;
 
 //@Service
 //@Transactional

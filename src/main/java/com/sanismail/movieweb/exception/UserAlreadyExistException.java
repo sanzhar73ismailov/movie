@@ -1,4 +1,4 @@
-package com.sanismail.movieweb.service.exception;
+package com.sanismail.movieweb.exception;
 
 public class UserAlreadyExistException extends RuntimeException {
 
